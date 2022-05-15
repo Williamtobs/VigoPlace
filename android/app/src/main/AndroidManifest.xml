@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.vigo_place">
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="vigo_place"
         android:name="${applicationName}"

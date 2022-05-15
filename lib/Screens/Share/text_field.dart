@@ -5,14 +5,16 @@ class VigoTextField extends StatelessWidget {
   final bool obScureText;
   final String hintText;
   final Icon icon;
-  final Icon? suffixIcon;
+  final IconButton? suffixIcon;
+  final String? Function(String?)? validator;
   const VigoTextField(
       {Key? key,
       required this.controller,
       required this.obScureText,
       required this.hintText,
       required this.icon,
-      this.suffixIcon})
+      this.suffixIcon,
+      this.validator})
       : super(key: key);
 
   @override
@@ -20,17 +22,22 @@ class VigoTextField extends StatelessWidget {
     return TextFormField(
       controller: controller,
       obscureText: obScureText,
+      validator: validator,
       decoration: InputDecoration(
           isDense: true,
           hintText: hintText,
           filled: true,
           fillColor: const Color.fromRGBO(243, 244, 248, 1),
-          //icon: icon,
+          contentPadding: const EdgeInsets.all(18.0),
           prefixIcon: icon,
-          suffix: suffixIcon,
+          suffixIcon: suffixIcon,
+          errorBorder: const OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.red)),
+          focusedErrorBorder: const OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.red)),
           focusedBorder: const OutlineInputBorder(
             borderSide: BorderSide(
-              color: Color.fromRGBO(209, 210, 216, 1),
+              color: Color.fromRGBO(129, 53, 249, 1),
             ),
           ),
           enabledBorder: const OutlineInputBorder(

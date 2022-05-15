@@ -1,19 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
+import 'Screens/Share/bottom_navigation.dart';
 import 'Screens/onboarding_page.dart';
 
-void main() {
-  runApp(const MyApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  var loggedIn = prefs.getBool('loggedIn');
+  runApp(MyApp(isLoggedIn: loggedIn));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  var isLoggedIn;
+  MyApp({Key? key, required this.isLoggedIn}) : super(key: key);
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'William Tobi',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -24,9 +30,9 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.purple,
       ),
-      home: const OnboardingScreen(),
+      home: isLoggedIn == true ? const BottomNavigation() : OnboardingScreen(),
     );
   }
 }

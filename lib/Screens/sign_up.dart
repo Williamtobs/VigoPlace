@@ -391,7 +391,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   var service = ApiService();
   register() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    if (_formKey.currentState!.validate()) {
+    if (_formKey.currentState!.validate() && check == true) {
       print(userNameController.text);
       loading();
       service
